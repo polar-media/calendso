@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:12-alpine
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: calendso
+      POSTGRES_PASSWORD: secret
+
+  app:
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+      - 5555:5555
